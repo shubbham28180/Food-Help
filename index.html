@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodShare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">🌿 Food<span>Share</span></div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#donor">Donate</a>
+        <a href="#find">Find Food</a>
+        <a href="#request">Request</a>
+        <a href="#tracking">Tracking</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="login" onclick="login()">Login</button>
+    <button class="signup" onclick="signup()">Sign Up</button>
+</header>
+
+
+<!-- HOME -->
+<section id="home" class="hero">
+
+    <div class="hero-content">
+        <p>COMMUNITY FOOD SHARING PLATFORM</p>
+
+        <h1>
+            Share Food.<br>
+            <span>Reduce Waste.</span><br>
+            Fight Hunger.
+        </h1>
+
+        <p class="description">
+            Every meal shared makes a difference.
+            Connect surplus food with people who need it.
+        </p>
+
+        <button onclick="location.href='#donor'">Donate Food</button>
+        <button class="orange" onclick="location.href='#find'">Find Food</button>
+    </div>
+
+    <div class="food-image">
+        🍚 🥗 🍛
+        <p>Good Food Should Be Shared!</p>
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+<section class="stats">
+
+    <div>
+        <h2>1,200+</h2>
+        <p>Meals Shared</p>
+    </div>
+
+    <div>
+        <h2>350+</h2>
+        <p>Donors</p>
+    </div>
+
+    <div>
+        <h2>40+</h2>
+        <p>NGOs / Volunteers</p>
+    </div>
+
+    <div>
+        <h2>10+</h2>
+        <p>Cities</p>
+    </div>
+
+</section>
+
+
+<!-- MISSION -->
+<section class="mission">
+
+    <div>
+        <h2>Our Mission</h2>
+        <p>
+            To reduce food waste by connecting surplus food
+            with people in need through a simple and efficient platform.
+        </p>
+    </div>
+
+    <div class="people">👨‍🍳 🤝 👩‍🦱</div>
+
+</section>
+
+
+<!-- DONOR REGISTRATION -->
+<section id="donor" class="section">
+
+    <h2>02 | Donor Registration</h2>
+
+    <div class="form-container">
+
+        <form onsubmit="registerDonor(event)">
+
+            <h2>Register as a Donor</h2>
+            <p>Join us to share surplus food.</p>
+
+            <label>Full Name *</label>
+            <input id="donorName" type="text" required>
+
+            <label>Donor Type *</label>
+            <select id="donorType">
+                <option>Restaurant</option>
+                <option>Hotel</option>
+                <option>Individual</option>
+                <option>NGO</option>
+            </select>
+
+            <label>Phone Number *</label>
+            <input id="donorPhone" type="tel" required>
+
+            <label>Email</label>
+            <input id="donorEmail" type="email">
+
+            <label>Location *</label>
+            <input id="donorLocation" type="text" required>
+
+            <label>Address</label>
+            <textarea id="donorAddress"></textarea>
+
+            <button type="submit">Register</button>
+
+        </form>
+
+        <div class="side-box">
+            🏪
+            <h2>Good food should be shared, not wasted.</h2>
+            <p>Register today and make a difference.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DONATE FOOD -->
+<section id="donate" class="section">
+
+    <h2>03 | Donate Food</h2>
+
+    <div class="form-container">
+
+        <form onsubmit="donateFood(event)">
+
+            <h2>Donate Surplus Food</h2>
+
+            <label>Food Name *</label>
+            <input id="foodName" type="text" required>
+
+            <label>Food Category</label>
+            <select id="foodCategory">
+                <option>Vegetarian</option>
+                <option>Non-Vegetarian</option>
+                <option>Snacks</option>
+                <option>Fruits</option>
+                <option>Bakery</option>
+            </select>
+
+            <label>Quantity (Meals) *</label>
+            <input id="quantity" type="number" required>
+
+            <label>Prepared Date & Time *</label>
+            <input id="prepared" type="datetime-local" required>
+
+            <label>Consume Before *</label>
+            <input id="consume" type="datetime-local" required>
+
+            <label>Pickup Location *</label>
+            <input id="pickup" type="text" required>
+
+            <label>Contact Number *</label>
+            <input id="contactNumber" type="tel" required>
+
+            <label>Additional Information</label>
+            <textarea id="foodInfo"></textarea>
+
+            <button type="submit">Donate Food</button>
+
+        </form>
+
+        <div class="side-box quote">
+            <h2>
+                "Your surplus food can be someone's
+                next meal."
+            </h2>
+
+            <div>🍚 🥗</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FIND FOOD -->
+<section id="find" class="section">
+
+    <h2>04 | Find Food</h2>
+
+    <div class="search-box">
+
+        <input
+            id="search"
+            type="text"
+            placeholder="Search food..."
+            onkeyup="searchFood()"
+        >
+
+        <select id="category" onchange="searchFood()">
+            <option>All</option>
+            <option>Vegetarian</option>
+            <option>Non-Vegetarian</option>
+            <option>Snacks</option>
+            <option>Fruits</option>
+            <option>Bakery</option>
+        </select>
+
+        <input
+            id="location"
+            type="text"
+            placeholder="Location"
+            onkeyup="searchFood()"
+        >
+
+    </div>
+
+    <div id="foodList" class="food-list">
+
+        <div class="food-card"
+             data-name="vegetable rice"
+             data-category="Vegetarian"
+             data-location="Vijayawada">
+
+            <div class="food-icon">🍚</div>
+
+            <div>
+                <h3>Vegetable Rice</h3>
+                <p>Vegetarian • 30 Meals</p>
+                <p>📍 Benz Circle, Vijayawada</p>
+
+                <span class="available">Available</span>
+
+                <button onclick="requestFood('Vegetable Rice')">
+                    Request
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="food-card"
+             data-name="idli sambar"
+             data-category="Vegetarian"
+             data-location="Guntur">
+
+            <div class="food-icon">🥣</div>
+
+            <div>
+                <h3>Idli & Sambar</h3>
+                <p>Vegetarian • 20 Meals</p>
+                <p>📍 Guntur</p>
+
+                <span class="available">Available</span>
+
+                <button onclick="requestFood('Idli & Sambar')">
+                    Request
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="food-card"
+             data-name="chapati curry"
+             data-category="Vegetarian"
+             data-location="Mangalagiri">
+
+            <div class="food-icon">🫓</div>
+
+            <div>
+                <h3>Chapati & Curry</h3>
+                <p>Vegetarian • 25 Meals</p>
+                <p>📍 Mangalagiri</p>
+
+                <span class="requested">Requested</span>
+            </div>
+
+        </div>
+
+
+        <div class="food-card"
+             data-name="bread fruits"
+             data-category="Fruits"
+             data-location="Vijayawada">
+
+            <div class="food-icon">🍞</div>
+
+            <div>
+                <h3>Bread & Fruits</h3>
+                <p>Fruits • 15 Packs</p>
+                <p>📍 Vijayawada</p>
+
+                <span class="available">Available</span>
+
+                <button onclick="requestFood('Bread & Fruits')">
+                    Request
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REQUEST FOOD -->
+<section id="request" class="section">
+
+    <h2>05 | Request Food</h2>
+
+    <div class="form-container">
+
+        <form onsubmit="submitRequest(event)">
+
+            <h2>Request Food</h2>
+
+            <label>Selected Food</label>
+            <input id="selectedFood" readonly>
+
+            <label>Your Name *</label>
+            <input id="requestName" required>
+
+            <label>Organization</label>
+            <input id="organization">
+
+            <label>Phone Number *</label>
+            <input id="requestPhone" required>
+
+            <label>Required Quantity *</label>
+            <input id="requestQuantity" type="number" required>
+
+            <label>Pickup Date & Time *</label>
+            <input id="requestDate" type="datetime-local" required>
+
+            <label>Purpose</label>
+            <textarea id="purpose"></textarea>
+
+            <button type="submit">Submit Request</button>
+
+        </form>
+
+        <div class="side-box">
+            <h2>Selected Food</h2>
+            <p id="selectedFoodText">
+                Select food from Find Food.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TRACKING -->
+<section id="tracking" class="section">
+
+    <h2>06 | Donation Status Tracking</h2>
+
+    <div class="tracking">
+
+        <div class="track active">
+            ✓
+            <div>
+                <h3>Donation Created</h3>
+                <p>Food donation successfully created.</p>
+            </div>
+        </div>
+
+        <div class="track active">
+            ✓
+            <div>
+                <h3>Request Received</h3>
+                <p>Food request has been received.</p>
+            </div>
+        </div>
+
+        <div class="track">
+            3
+            <div>
+                <h3>Food Collected</h3>
+                <p>Waiting for collection.</p>
+            </div>
+        </div>
+
+        <div class="track">
+            4
+            <div>
+                <h3>Food Distributed</h3>
+                <p>Pending.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="section">
+
+    <h2>07 | Dashboard</h2>
+
+    <div class="dashboard">
+
+        <div class="dash green">
+            <h2 id="totalDonations">4</h2>
+            <p>Total Donations</p>
+        </div>
+
+        <div class="dash blue">
+            <h2 id="available">3</h2>
+            <p>Available</p>
+        </div>
+
+        <div class="dash orange">
+            <h2 id="collected">0</h2>
+            <p>Collected</p>
+        </div>
+
+        <div class="dash purple">
+            <h2 id="distributed">0</h2>
+            <p>Distributed</p>
+        </div>
+
+    </div>
+
+    <div class="chart">
+
+        <h2>Food Distribution Overview</h2>
+
+        <div class="bars">
+            <div>
+                <span style="height:100px"></span>
+                Available
+            </div>
+
+            <div>
+                <span style="height:55px"></span>
+                Requested
+            </div>
+
+            <div>
+                <span style="height:75px"></span>
+                Collected
+            </div>
+
+            <div>
+                <span style="height:110px"></span>
+                Distributed
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section id="about" class="section">
+
+    <h2>08 | Why FoodShare?</h2>
+
+    <div class="feature-grid">
+
+        <div>
+            🌱
+            <h3>Reduce Food Waste</h3>
+            <p>Share extra food instead of wasting it.</p>
+        </div>
+
+        <div>
+            👥
+            <h3>Feed People in Need</h3>
+            <p>Connect food with people who need it.</p>
+        </div>
+
+        <div>
+            ❤️
+            <h3>Support Communities</h3>
+            <p>Build a caring community.</p>
+        </div>
+
+        <div>
+            🌍
+            <h3>Protect Environment</h3>
+            <p>Reduce food waste and save resources.</p>
+        </div>
+
+    </div>
+
+    <div class="tips">
+        <h2>Tips to Reduce Food Waste</h2>
+
+        <p>✔ Plan your meals</p>
+        <p>✔ Store food properly</p>
+        <p>✔ Share surplus food</p>
+        <p>✔ Donate instead of discarding</p>
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+
+    <h2>09 | Contact / Feedback</h2>
+
+    <div class="form-container">
+
+        <form onsubmit="sendMessage(event)">
+
+            <h2>Contact Us</h2>
+
+            <label>Name *</label>
+            <input id="contactName" required>
+
+            <label>Email *</label>
+            <input id="contactEmail" type="email" required>
+
+            <label>Message *</label>
+            <textarea id="message" required></textarea>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+
+        <div class="side-box contact">
+            <h2>Get in Touch</h2>
+
+            <p>📧 foodshare@example.com</p>
+            <p>📞 +91 91234 56789</p>
+            <p>📍 Vijayawada, Andhra Pradesh</p>
+
+            🌿
+            <h3>Together for a Hunger-Free Community</h3>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <h2>
+        "Good Food Should Feed People, Not Landfills."
+    </h2>
+
+    <p>
+        Share Today • Support Communities • Build a Healthier Tomorrow
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
